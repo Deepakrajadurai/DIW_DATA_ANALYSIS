@@ -1,0 +1,6 @@
+{
+  "name": "German Economic Insights Dashboard",
+  "description": "An interactive dashboard for analyzing German economic reports, powered by Gemini AI for generating narrative summaries and providing chatbot assistance.",
+  "requestFramePermissions": [],
+  "prompt": ""
+}
