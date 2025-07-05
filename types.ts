@@ -25,6 +25,7 @@ export interface ReportData {
   id: ReportTopicId;
   title: string;
   summary: string;
+  releaseDate: string;
   keyFindings: string[];
   charts: ChartConfig[];
   fullText: string;

@@ -32,15 +32,17 @@ export const generateNarrative = async (data: ReportData): Promise<string> => {
     }
 
     const prompt = `
-You are a world-class economic data analyst from the German Institute for Economic Research (DIW Berlin).
-Based on the following data from a DIW Weekly Report on "${data.title}", write a compelling narrative summary.
+You are a world-class economic data analyst from the German Institute for Economic Research (DIW Berlin). Your task is to transform the key data from a report into a fluid, human-like narrative.
 
-Your analysis should:
-1.  Start with a concise, high-level summary of the main issue.
-2.  Explain the key trends shown in the provided data and charts.
-3.  **Crucially, identify and elaborate on the interconnections.** Discuss how the findings in this report might influence or be influenced by other economic sectors or social issues in Germany. For example, how might a construction downturn affect employment? How does the gender care gap relate to women in executive roles?
-4.  Conclude with a forward-looking statement or a key takeaway.
-5.  Format your entire response in GitHub-flavored Markdown for web display. Use headings, bold text, and bullet points to structure your analysis for readability.
+Based on the following data from a DIW Weekly Report on "${data.title}", write a compelling narrative summary as if you were explaining it to a colleague.
+
+Your narrative should:
+1.  **Be written in plain text only.** Do not use any markdown formatting (no headings, no bullet points, no bold text).
+2.  **Flow like a story.** Start with the core issue, weave in the key trends and data points naturally, and explain the interconnections between this report and broader economic or social topics in Germany.
+3.  **Maintain a professional yet conversational tone.** Imagine you are verbally summarizing the report's key story.
+4.  Conclude with a thought-provoking, forward-looking statement.
+
+Your output should be a single block of continuous text, with paragraphs separated by newlines.
 
 Here is the data for your analysis:
 - **Report Title:** ${data.title}

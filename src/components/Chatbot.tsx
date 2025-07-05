@@ -17,7 +17,7 @@ export const Chatbot: React.FC<ChatbotProps> = ({ data }) => {
     const [userInput, setUserInput] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const messagesEndRef = useRef<HTMLDivElement>(null);
-    const { currentlySpeaking, toggleSpeech, stopSpeaking } = useSpeechSynthesis();
+    const { spokenText, speakingState, speak, pause, resume, stop } = useSpeechSynthesis();
 
     useEffect(() => {
         setChat(startChat(data));
@@ -25,7 +25,7 @@ export const Chatbot: React.FC<ChatbotProps> = ({ data }) => {
             role: 'model',
             content: `Hello! I'm ready to answer your questions about the "${data.title}" report.`
         }]);
-        stopSpeaking();
+        stop();
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [data]);
 
@@ -57,21 +57,32 @@ export const Chatbot: React.FC<ChatbotProps> = ({ data }) => {
                 <i className="fa-solid fa-robot text-blue-400"></i>
             </h3>
             <div className="flex-grow overflow-y-auto mb-4 pr-2 space-y-4">
-                {history.map((msg, index) => (
-                    <div key={index} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                        <div className={`p-3 rounded-lg max-w-sm md:max-w-md ${msg.role === 'user' ? 'bg-blue-600 text-white' : 'bg-gray-700 text-gray-200'}`}>
-                           <div className="prose prose-sm prose-invert max-w-none">
-                                <ReactMarkdown remarkPlugins={[remarkGfm]}>{msg.content}</ReactMarkdown>
-                           </div>
-                           {msg.role === 'model' && (
-                               <button onClick={() => toggleSpeech(msg.content)} className="mt-2 text-xs text-blue-300 hover:text-blue-200">
-                                   <i className={`fa-solid ${currentlySpeaking === msg.content ? 'fa-stop-circle' : 'fa-volume-high'} mr-1`}></i>
-                                    {currentlySpeaking === msg.content ? 'Stop' : 'Read aloud'}
-                               </button>
-                           )}
+                {history.map((msg, index) => {
+                    const isThisMsgActive = spokenText === msg.content && msg.content !== '';
+                    return (
+                        <div key={index} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+                            <div className={`p-3 rounded-lg max-w-sm md:max-w-md ${msg.role === 'user' ? 'bg-blue-600 text-white' : 'bg-gray-700 text-gray-200'}`}>
+                               <div className="prose prose-sm prose-invert max-w-none break-words">
+                                    <ReactMarkdown remarkPlugins={[remarkGfm]}>{msg.content}</ReactMarkdown>
+                               </div>
+                               {msg.role === 'model' && msg.content && (
+                                    <div className="flex items-center mt-2 space-x-3 text-xs text-blue-300">
+                                        {speakingState === 'speaking' && isThisMsgActive ? (
+                                            <button onClick={pause} className="hover:text-white" aria-label="Pause"><i className="fa-solid fa-pause"></i></button>
+                                        ) : speakingState === 'paused' && isThisMsgActive ? (
+                                            <button onClick={resume} className="hover:text-white" aria-label="Resume"><i className="fa-solid fa-play"></i></button>
+                                        ) : (
+                                            <button onClick={() => speak(msg.content)} className="hover:text-white" aria-label="Read aloud"><i className="fa-solid fa-volume-high"></i></button>
+                                        )}
+                                        {(speakingState === 'speaking' || speakingState === 'paused') && isThisMsgActive && (
+                                            <button onClick={stop} className="hover:text-white" aria-label="Stop"><i className="fa-solid fa-stop"></i></button>
+                                        )}
+                                    </div>
+                               )}
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    );
+                })}
                 {isLoading && (
                     <div className="flex justify-start">
                         <div className="p-3 rounded-lg bg-gray-700 text-gray-200">

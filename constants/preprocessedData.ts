@@ -1,181 +1,9 @@
-//
-// import type { ReportData } from '../types';
-//
-// export const PREPROCESSED_DATA: ReportData[] = [
-//     {
-//         id: 'construction',
-//         title: 'Decline in Nominal Construction Volume',
-//         summary: 'For the first time since the financial crisis, Germany\'s nominal construction volume is expected to decline by 3.5% due to falling construction prices and worsened financing conditions. The residential construction sector is particularly hard-hit, while civil engineering cushions the downturn.',
-//         keyFindings: [
-//             "Nominal construction volume to decline by 3.5% in 2024.",
-//             "Real change in total construction is projected at -1.5% for 2024.",
-//             "Residential construction sees a marked decline (-3.4% real change in 2024).",
-//             "Civil engineering shows resilience with projected growth (3.6% real change in 2024).",
-//             "The national goal of constructing 400,000 residences per year is becoming increasingly out of reach."
-//         ],
-//         charts: [
-//             {
-//                 type: 'bar',
-//                 title: 'Real Change in Construction Volume (%) vs. Previous Year',
-//                 description: 'This chart illustrates the projected percentage change in real construction volume for different sectors, comparing 2023, 2024, and 2025.',
-//                 xAxisKey: 'name',
-//                 data: [
-//                     { name: 'Total', '2023': -1.1, '2024': -1.5, '2025': 1.5 },
-//                     { name: 'Residential', '2023': -2.3, '2024': -3.4, '2025': 0.4 },
-//                     { name: 'Civil Eng.', '2023': 2.6, '2024': 3.6, '2025': 3.3 },
-//                 ],
-//                 dataKeys: [
-//                     { key: '2023', color: '#8884d8' },
-//                     { key: '2024', color: '#82ca9d' },
-//                     { key: '2025', color: '#ffc658' },
-//                 ]
-//             }
-//         ],
-//         fullText: `DIW Weekly Report
-//         Decline in nominal construction volume expected for the first time since the financial crisis; residential construction situation worsening.
-//         High construction prices and worsened financing conditions are weighing on the construction industry, especially building construction. Despite a nominal increase of six percent in construction expenses in 2023, it decreased by just over one percent in inflation-adjusted terms. In 2024, the nominal construction volume is likely to contract by around 3.5 percent, declining for the first time since the financial crisis due to falling construction prices. Residential construction in particular experienced a sharp decline in 2023 and will continue on this downward trend more strongly in 2024. Renovation and modernization activity is less affected than new construction. The situation will stabilize by 2025. The prospect of constructing 400,000 new residences annually is thus becoming increasingly out of reach. Only civil engineering is stabilizing the construction industry overall; it is likely to expand in both 2024 and 2025.
-//         `
-//     },
-//     {
-//         id: 'women_executives',
-//         title: 'Women Executives Barometer 2024',
-//         summary: 'The share of women on the executive boards of Germany\'s largest companies has increased to around 18% in late 2023. However, growth is slow and companies rarely appoint more than one woman to their executive board, indicating a potential "one and done" social norm.',
-//         keyFindings: [
-//             "Share of women on executive boards of top 200 companies reached ~18% in late 2023.",
-//             "44% of the top 200 companies still have no women on their executive board.",
-//             "The number of women CEOs in the top 200 companies has decreased.",
-//             "Legal requirements (inclusion quota) appear to be effective, but may establish a new social norm of having just one woman on the board."
-//         ],
-//         charts: [
-//             {
-//                 type: 'bar',
-//                 title: 'Number of Women on Executive Boards (Top 200 Companies)',
-//                 description: 'The chart shows the distribution of companies by the number of women on their executive board for 2022 and 2023, indicating a slow shift towards gender diversity.',
-//                 xAxisKey: 'name',
-//                 data: [
-//                     { name: '0 Women', '2022': 50, '2023': 44 },
-//                     { name: '1 Woman', '2022': 38, '2023': 40 },
-//                     { name: '2+ Women', '2022': 12, '2023': 16 },
-//                 ],
-//                 dataKeys: [
-//                     { key: '2022', name: '2022 (%)', color: '#8884d8' },
-//                     { key: '2023', name: '2023 (%)', color: '#82ca9d' },
-//                 ]
-//             }
-//         ],
-//         fullText: `DIW Weekly Report
-//         Share of women on the executive boards of large companies has increased, but generally is at most one woman.
-//         The number of women serving on the executive boards of large companies in Germany once again increased in 2023: Around 18 percent (153 of 875) of executive board members at the 200 largest companies were women as of late fall 2023, two percentage points higher than in 2022. Thus, growth has slightly picked up again. In some of the groups of companies analyzed, the figure was even higher. Around 23 percent of executive board members at the DAX 40 companies, for example, are women. The largest banks and insurance companies, which in the past years have lagged considerably behind other private sector companies and companies with government-owned shares, managed to catch up a bit. In many places, this growth is due to the fact that companies have appointed a woman to their executive board for the first time. Beyond that, there is currently not much progress. In addition, the number of women holding the position of CEO has decreased in many groups of companies. More commitment is needed from companies, both internally (e.g., from the supervisory board) and externally (e.g., from investors) to achieve gender parity in senior leadership positions.`
-//     },
-//     {
-//         id: 'energy_transition',
-//         title: 'Energy Transition in France',
-//         summary: 'France is largely on track with its greenhouse gas emissions targets and shows good progress in heat pump installation. However, the expansion of renewable energy sources like wind and solar is stalling, posing a challenge to achieving long-term climate goals despite its heavy reliance on nuclear power.',
-//         keyFindings: [
-//             "France relies heavily on nuclear power, which constituted 65% of power generation in 2023.",
-//             "Renewable energy expansion (solar, wind) is too slow to meet targets.",
-//             "France is a European leader in heat pump installation, a key element of its building decarbonization strategy.",
-//             "Key differences exist with Germany, which is phasing out nuclear while rapidly expanding renewables."
-//         ],
-//         charts: [
-//             {
-//                 type: 'pie',
-//                 title: 'Power Generation in France (2023)',
-//                 description: 'Shares of different energy sources in France\'s power generation mix.',
-//                 xAxisKey: 'name',
-//                 data: [
-//                     { name: 'Nuclear', value: 65.0 },
-//                     { name: 'Hydroelectric', value: 11.9 },
-//                     { name: 'Wind', value: 10.2 },
-//                     { name: 'Solar', value: 4.4 },
-//                     { name: 'Fossil Fuels', value: 6.5 },
-//                     { name: 'Other', value: 2.0 },
-//                 ],
-//                 dataKeys: [
-//                     { key: 'value', color: '#0088FE' },
-//                     { key: 'value', color: '#00C49F' },
-//                     { key: 'value', color: '#FFBB28' },
-//                     { key: 'value', color: '#FF8042' },
-//                     { key: 'value', color: '#AF19FF' },
-//                     { key: 'value', color: '#FF1943' },
-//                 ]
-//             }
-//         ],
-//         fullText: `DIW Weekly Report
-//         The Energy Transition in France: Expansion of Renewables Stalling, Good Progress on Heat Pumps.
-//         The energy transition is a major challenge for both Germany and France. This Weekly Report provides an overview of the short- and long-term goals as well as current developments and trends in France's energy and climate policy. It reveals that France is largely on track with its greenhouse gases targets and is also making good progress on installing heat pumps. However, its expansion of renewable energy capacities is falling short. Differences in the energy policies of France and Germany are most apparent in the power sector: While France is prioritizing nuclear power, Germany is relying heavily on renewable energy. For France to achieve its climate goals, it will have to expand renewable energy faster.`
-//     },
-//     {
-//         id: 'sovereign_debt',
-//         title: '200 Years of Sovereign Debt Crises',
-//         summary: 'A historical analysis of 321 sovereign debt restructurings since 1815 reveals that investor losses averaged 43%. Debt crises requiring multiple, or "serial," restructurings are associated with higher total creditor losses, suggesting that initial restructuring deals are often insufficient.',
-//         keyFindings: [
-//             "Investors lost 43% on average over 321 debt restructurings since 1815.",
-//             "One-third of debt crises require two or more restructurings to resolve.",
-//             "Crises with serial restructurings lead to larger total creditor losses, rising to 47% on average per default spell.",
-//             "The data suggests one deep, decisive restructuring is often better for creditors than multiple smaller ones.",
-//             "Independent debt sustainability analyses are crucial to determining the right haircut size and avoiding serial restructurings."
-//         ],
-//         charts: [
-//             {
-//                 type: 'bar',
-//                 title: 'Cumulative Creditor Losses by Number of Restructurings',
-//                 description: 'This chart shows how average creditor losses accumulate as the number of restructurings within a single debt crisis increases.',
-//                 xAxisKey: 'name',
-//                 data: [
-//                     { name: '1 Restructuring', 'Average Loss (%)': 41.9 },
-//                     { name: '2 Restructurings', 'Average Loss (%)': 49.2 },
-//                     { name: '3+ Restructurings', 'Average Loss (%)': 59.1 },
-//                 ],
-//                 dataKeys: [
-//                     { key: 'Average Loss (%)', color: '#2563eb' }
-//                 ]
-//             }
-//         ],
-//         fullText: `DIW Weekly Report
-//         200 years of sovereign debt crises: Serial restructurings may be accompanied by higher creditor losses.
-//         Many sovereign defaults have occurred worldwide over the past 200 years. An analysis of 321 sovereign debt restructurings since 1815 shows that foreign private and institutional investor losses were 43 percent on average. Notably, beginning in the 1970s, several debt exchanges have increasingly been required to resolve a default. To understand this new phenomenon better, this Weekly Report looks at total creditor losses across all restructurings during a default spell. Instead of focusing on each individual restructuring, the cumulative haircut adds up all losses across a default spell. These calculations show that debt crises with serial restructurings resulted in greater overall losses for creditors than a major one-off restructuring.`
-//     },
-//     {
-//         id: 'gender_care_gap',
-//         title: 'Gender Care Gap in Germany',
-//         summary: 'Women in European countries perform significantly more informal care work for relatives than men. This "gender care gap" is smaller in countries with higher public expenditure on formal long-term care. In Germany, which is mid-range, women are more than twice as likely as men to provide informal care, impacting their employment and income.',
-//         keyFindings: [
-//             "A significant gender care gap exists across Europe, with women providing more informal care.",
-//             "The gap is strongly correlated with public spending on formal care; more spending equals a smaller gap.",
-//             "In Germany, the gender care gap is 133%, meaning women are more than twice as likely as men to be caregivers.",
-//             "Countries with higher gender inequality in labor markets also exhibit a larger gender care gap.",
-//             "Policy recommendations include investing more in formal care and using tax/family policies to incentivize women's workforce participation."
-//         ],
-//         charts: [
-//             {
-//                 type: 'line',
-//                 title: 'Gender Care Gap vs. In-Patient Care Expenditure',
-//                 description: 'This chart plots the relationship between a country\'s gender care gap and its public spending on in-patient care, showing a negative correlation.',
-//                 xAxisKey: 'In-patient care expenditure (% of GDP)',
-//                 data: [
-//                     { "In-patient care expenditure (% of GDP)": 0.1, "Gender Care Gap (%)": 231, name: 'Croatia' },
-//                     { "In-patient care expenditure (% of GDP)": 0.1, "Gender Care Gap (%)": 195, name: 'Greece' },
-//                     { "In-patient care expenditure (% of GDP)": 1.0, "Gender Care Gap (%)": 133, name: 'Germany' },
-//                     { "In-patient care expenditure (% of GDP)": 1.8, "Gender Care Gap (%)": 88, name: 'Sweden' },
-//                     { "In-patient care expenditure (% of GDP)": 1.9, "Gender Care Gap (%)": 80, name: 'Switzerland' },
-//                     { "In-patient care expenditure (% of GDP)": 0.5, "Gender Care Gap (%)": 63, name: 'Portugal' },
-//                 ],
-//                 dataKeys: [
-//                     { key: 'Gender Care Gap (%)', name: 'Gender Care Gap (%)', color: '#ef4444' }
-//                 ]
-//             }
-//         ],
-//         fullText: `DIW Weekly Report
-//         Expanding long-term care insurance could reduce the gender care gap in Germany.
-//         In many European countries, men and women differ significantly in the amount of informal care work they provide for relatives, with women acting as caregivers far more frequently than men. This difference, known as the gender care gap, varies considerably between European countries, with Germany somewhere in the middle of the distribution. This Weekly Report analyzes the institutional, societal, and labor market factors that are related to the gender care gap across European countries. The results show that the gap is smaller in countries that spend more on the formal care system. In addition, they show that the gender care gap tends to be larger in countries that exhibit high gender inequality and high inequality in labor market participation between men and women.`
-//     }
-// ];
 import type { ReportData } from '../types';
 
 export const PREPROCESSED_DATA: ReportData[] = [
     {
         id: 'gender_care_gap',
+        releaseDate: '2024-02-14',
         title: 'Gender Care Gap in Germany',
         summary: 'Women in European countries perform significantly more informal care work for relatives than men. This "gender care gap" is smaller in countries with higher public expenditure on formal long-term care. In Germany, which is mid-range, women are more than twice as likely as men to provide informal care, impacting their employment and income.',
         keyFindings: [
@@ -221,6 +49,7 @@ export const PREPROCESSED_DATA: ReportData[] = [
     },
     {
         id: 'sanctions_on_russia',
+        releaseDate: '2024-02-21',
         title: 'Sanctions on Russia',
         summary: "Multilateral cooperation in sanctioning Russia in 2014 amplified the economic impact, reducing domestic costs for sanctioning countries while increasing the welfare loss for Russia. The EU was a pivotal player, accounting for 78% of the inflicted welfare loss. The report suggests that burden-sharing mechanisms and coordination with emerging economies like China could significantly enhance the stability and effectiveness of sanctions.",
         keyFindings: [
@@ -268,6 +97,7 @@ export const PREPROCESSED_DATA: ReportData[] = [
     },
     {
         id: 'gender_gap_coronavirus',
+        releaseDate: '2024-03-06',
         title: 'Gender Gap & Coronavirus',
         summary: 'During the initial COVID-19 lockdowns, the gender care gap in Germany widened as mothers took on the majority of extra childcare. However, this shift was temporary, and the division of care work returned to its high, but pre-pandemic, level within a year. The report concludes that while a feared long-term reversal to traditional gender roles did not occur, underlying inequalities persist.',
         keyFindings: [
@@ -299,6 +129,7 @@ export const PREPROCESSED_DATA: ReportData[] = [
     },
     {
         id: 'economic_outlook_spring_2024',
+        releaseDate: '2024-03-12',
         title: 'Economic Outlook Spring 2024',
         summary: "Germany's economic recovery is delayed, with GDP growth projected to be zero in 2024 before a more solid rebound to 1.2% in 2025. While falling inflation and rising real wages should boost private consumption, corporate caution and weak foreign demand are holding back a stronger upswing. The global economy remains more robust, expecting 3.5% growth in both years.",
         keyFindings: [
@@ -347,6 +178,7 @@ export const PREPROCESSED_DATA: ReportData[] = [
     },
     {
         id: 'refugee_health_entitlements',
+        releaseDate: '2024-03-21',
         title: 'Refugee Health Entitlements',
         summary: "Germany's decision to extend the restriction period for refugees' full healthcare entitlements from 18 to 36 months is counterproductive. This policy negatively impacts refugees' health, particularly those with low education, and is likely to increase long-term costs for the state due to delayed, more expensive treatments. Wider adoption of the electronic health insurance card (EHIC) could mitigate some administrative barriers but is not yet nationwide.",
         keyFindings: [
@@ -384,6 +216,7 @@ export const PREPROCESSED_DATA: ReportData[] = [
     },
     {
         id: 'natural_gas_decommissioning',
+        releaseDate: '2024-04-02',
         title: 'Natural Gas Decommissioning',
         summary: "The transition to a climate-friendly heat supply necessitates the decommissioning of Germany's natural gas distribution networks. However, municipalities face significant challenges due to a lack of regulatory and economic incentives, financial dependency on gas revenues, and insufficient consideration in current heat plans. Federal support and regulatory adjustments are needed to manage this transition effectively.",
         keyFindings: [
@@ -413,6 +246,7 @@ export const PREPROCESSED_DATA: ReportData[] = [
     },
     {
         id: 'renewable_energy_pool',
+        releaseDate: '2024-04-17',
         title: 'Renewable Energy Pool',
         summary: "A Renewable Energy Pool (RE-Pool) is proposed as a mechanism to hedge against volatile electricity prices for both consumers and producers. By aggregating long-term contracts for new wind and solar projects, the RE-Pool can provide predictable, affordable electricity, reduce financing costs for renewables, and strengthen incentives for demand-side flexibility, replacing the current sliding market premium support system.",
         keyFindings: [
@@ -462,6 +296,7 @@ export const PREPROCESSED_DATA: ReportData[] = [
     },
     {
         id: 'electricity_market_stability',
+        releaseDate: '2024-05-08',
         title: 'Electricity Market Stability',
         summary: "Germany's electricity market has stabilized after the 2022 energy crisis, with prices returning to pre-war levels. The report argues that achieving an 80% renewable energy share by 2030 is feasible without nuclear power, emphasizing that price hikes were driven by external factors like French nuclear outages and gas prices, not the German nuclear phase-out.",
         keyFindings: [
@@ -511,6 +346,7 @@ export const PREPROCESSED_DATA: ReportData[] = [
     },
     {
         id: 'thermal_retrofitting',
+        releaseDate: '2024-05-16',
         title: 'Thermal Retrofitting of Inefficient Buildings',
         summary: "Prioritizing thermal retrofitting of the most inefficient buildings (a \"Worst-First\" approach) offers significant social, economic, and climate benefits. It particularly protects low-income households from high heating costs. However, investment pace is slow, necessitating better policies around financing, building standards, and tenancy laws.",
         keyFindings: [
@@ -556,6 +392,7 @@ export const PREPROCESSED_DATA: ReportData[] = [
     },
     {
         id: 'russian_gas_sanctions_supply',
+        releaseDate: '2024-05-23',
         title: 'Sanctions on Russian Gas & EU Supply',
         summary: 'The EU can completely forego Russian natural gas imports without endangering its supply security, even if demand remains high until 2030. Increased LNG imports and pipeline gas from other partners like Norway can compensate for the loss. Therefore, security of supply should not be an obstacle to imposing sanctions on Russian gas. A timely phase-out of natural gas is the best long-term strategy.',
         keyFindings: [
@@ -588,6 +425,7 @@ export const PREPROCESSED_DATA: ReportData[] = [
     },
     {
         id: 'supply_chain_bargaining',
+        releaseDate: '2024-05-29',
         title: 'Supply Chain Bargaining Power',
         summary: "In vertically integrated markets like the coffee industry, a manufacturer's market share does not always equate to bargaining power. A 2015 coffee merger case shows that a divestiture remedy was only partially effective because the buyer, despite a smaller market share, had higher bargaining power. This highlights the need for competition authorities to explicitly analyze and quantify bargaining power when evaluating mergers and remedies to protect consumer welfare.",
         keyFindings: [
@@ -618,6 +456,7 @@ export const PREPROCESSED_DATA: ReportData[] = [
     },
     {
         id: 'economic_outlook_summer_2024',
+        releaseDate: '2024-06-18',
         title: 'Economic Outlook Summer 2024',
         summary: "The German economy showed unexpected strength at the start of 2024, driven by construction and exports, prompting an upward revision of the 2024 GDP forecast to 0.3%. However, private consumption remains weak. Growth is expected to accelerate to 1.3% in 2025. The global economy is also recovering, set to grow by 3.7% in 2024 and 3.6% in 2025, supported by interest rate cuts and rising real wages.",
         keyFindings: [
@@ -649,6 +488,7 @@ export const PREPROCESSED_DATA: ReportData[] = [
     },
     {
         id: 'household_carbon_footprint',
+        releaseDate: '2024-07-03',
         title: 'Household Carbon Footprint',
         summary: "High-income households in Germany emit twice as many greenhouse gases as low-income households, primarily due to transport behavior, especially air travel. While all income groups exceed the sustainable emissions budget, the disparity highlights that policies targeting transport, such as banning short-haul flights and promoting housing swaps, are crucial for effective and equitable climate action.",
         keyFindings: [
@@ -680,6 +520,7 @@ export const PREPROCESSED_DATA: ReportData[] = [
     },
     {
         id: 'sustainable_finance_taxonomies',
+        releaseDate: '2024-07-10',
         title: 'Sustainable Finance Taxonomies',
         summary: "While over 50 countries are developing sustainable finance taxonomies to guide capital towards climate-neutral activities, their effectiveness is hampered by a lack of international harmonization, inconsistent standards, and limited mandatory reporting. The EU's taxonomy is among the most comprehensive, but global coordination is needed to avoid greenwashing and effectively steer the transition to net zero.",
         keyFindings: [
@@ -712,6 +553,7 @@ export const PREPROCESSED_DATA: ReportData[] = [
     },
     {
         id: 'paid_and_care_work_division',
+        releaseDate: '2024-07-17',
         title: 'Division of Paid and Care Work',
         summary: "There is a significant gap between the ideal and actual division of paid and care work among parents in Germany. While attitudes are becoming more egalitarian, the reality is that most couples, especially in western Germany, still follow a traditional 'one-and-a-half-earner' model. This discrepancy is largely driven by the German tax and transfer system (Ehegattensplitting, mini-jobs), insufficient childcare, and the gender pay gap.",
         keyFindings: [
@@ -743,6 +585,7 @@ export const PREPROCESSED_DATA: ReportData[] = [
     },
     {
         id: 'income_work_health_satisfaction',
+        releaseDate: '2024-08-21',
         title: 'Income, Work, and Health Satisfaction',
         summary: "While general life, income, and work satisfaction in Germany have remained stable or increased since 2004, significant disparities persist, particularly in health satisfaction. Low-income earners and parents report considerably lower health satisfaction, highlighting these groups as key areas for policy intervention to improve well-being and reduce inequality.",
         keyFindings: [
@@ -791,6 +634,7 @@ export const PREPROCESSED_DATA: ReportData[] = [
     },
     {
         id: 'economic_outlook_autumn_2024',
+        releaseDate: '2024-09-12',
         title: 'Economic Outlook Autumn 2024',
         summary: "The German economy is stagnating, with a slight GDP decline in Q2 2024 erasing earlier gains. A recovery isn't expected until late 2024, with forecasts showing 0.0% growth for this year, revised down to 0.9% for 2025. High savings rates and weak industrial demand are key headwinds, while the global economy continues a more robust, albeit recently weakened, recovery.",
         keyFindings: [
@@ -822,6 +666,7 @@ export const PREPROCESSED_DATA: ReportData[] = [
     },
     {
         id: 'ecb_monetary_policy_energy_crisis',
+        releaseDate: '2024-10-16',
         title: 'ECB Monetary Policy & Energy Crisis',
         summary: "The ECB's delayed response to the post-pandemic inflation surge, while supporting economic recovery, ultimately exacerbated the rise in energy and consumer prices. A counterfactual analysis shows that a quicker, more decisive interest rate hike would have contained inflation more effectively, leading to a shorter, briefer recession and a more stable economic outcome by late 2023. The episode highlights the challenges the ECB faces without a full fiscal and capital markets union.",
         keyFindings: [
@@ -854,6 +699,7 @@ export const PREPROCESSED_DATA: ReportData[] = [
     },
     {
         id: 'carbon_pricing_dividend',
+        releaseDate: '2024-10-23',
         title: 'Carbon Pricing & Climate Dividend',
         summary: "To mitigate the regressive burden of rising carbon prices from the new EU ETS2, a swift introduction of a climate dividend is needed. A flat-rate dividend for all residents would relieve low-income households most. To improve targeting and finance additional support for vulnerable groups, this dividend should be reduced for higher-income earners, which can be done unbureaucratically through the existing tax system.",
         keyFindings: [
@@ -884,6 +730,7 @@ export const PREPROCESSED_DATA: ReportData[] = [
     },
     {
         id: 'heat_monitor_2023',
+        releaseDate: '2024-11-06',
         title: 'Heat Monitor 2023',
         summary: "In 2023, German households' heating energy consumption fell by four percent, a smaller decline than in 2022, despite prices rising by another third. This suggests that savings potential from simple behavioral changes is nearing its limit. To meet climate targets, a significant push in energy-efficient building retrofits and a switch to renewable heating systems is now crucial.",
         keyFindings: [
@@ -914,6 +761,7 @@ export const PREPROCESSED_DATA: ReportData[] = [
     },
     {
         id: 'energy_efficient_renovation',
+        releaseDate: '2024-11-21',
         title: 'Energy-Efficient Renovation',
         summary: "Despite nominal increases, price-adjusted investments in the energy-efficient renovation of Germany's building stock have declined since 2013. The trend is particularly poor for non-residential buildings and for window/door replacements. To reverse this trend and meet climate targets, a significant increase in real investment and more robust government funding are urgently needed, especially given rising construction and financing costs.",
         keyFindings: [
@@ -947,6 +795,7 @@ export const PREPROCESSED_DATA: ReportData[] = [
     },
     {
         id: 'electric_road_freight',
+        releaseDate: '2024-12-04',
         title: 'Electric Road Freight',
         summary: "Market trends, cost analysis, and efficiency advantages strongly favor battery-electric trucks with stationary charging for decarbonizing road freight transport. While hydrogen trucks are discussed, their market adoption is stagnant and they face significant efficiency and cost disadvantages. Policy should focus on expanding fast-charging infrastructure to support the battery-electric transition.",
         keyFindings: [
@@ -991,6 +840,7 @@ export const PREPROCESSED_DATA: ReportData[] = [
     },
     {
         id: 'remittances_by_migrants',
+        releaseDate: '2024-12-05',
         title: 'Remittances by Migrants',
         summary: "Contrary to political debate, refugees in Germany send remittances abroad less often than other migrant groups. In 2021, only 7% of refugees sent money home, compared to 12% of non-refugee migrants. The data suggests that structural barriers, not a lack of desire, limit refugees' ability to remit. The report calls for a reevaluation of remittances as a vital tool for development and poverty alleviation, rather than a subject of unsubstantiated political concern.",
         keyFindings: [
@@ -1023,6 +873,7 @@ export const PREPROCESSED_DATA: ReportData[] = [
     },
     {
         id: 'economic_outlook_winter_2024',
+        releaseDate: '2024-12-18',
         title: 'Economic Outlook Winter 2024',
         summary: "The German economy is expected to contract by 0.2% in 2024, marking a second consecutive year of decline amid a serious industrial crisis and weak private consumption. Growth forecasts for 2025 have been significantly downgraded to just 0.2%. The global economy, driven by a booming US, is more resilient, but increasing protectionism and geopolitical tensions pose significant threats.",
         keyFindings: [
