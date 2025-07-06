@@ -50,8 +50,9 @@ export const Sidebar: React.FC<SidebarProps> = ({ topics, selectedTopicId, onSel
       </div>
 
       <div className="mt-auto text-center text-gray-500 text-xs flex-shrink-0 pt-4">
-          <p>&copy; 2024 DIW Berlin Analysis</p>
-          <p>Powered by Gemini</p>
+           <p>DIW Berlin Analysis</p>
+            <p>Human Machine Interaction</p>
+            <p>Powered by HMI_TEAM11</p>
       </div>
     </aside>
   );
