@@ -51,10 +51,18 @@ export interface RelationshipGraphData {
     edges: GraphEdge[];
 }
 
+export interface KeyActor {
+    name: string;
+    description: string;
+    icon: string; // A full Font Awesome 6 class string, e.g., "fa-solid fa-users"
+}
+
 export interface StoryboardData {
+  title: string;
   narrative: string;
   charts: ChartConfig[];
   introspection: string;
   retrospection: string;
   relationshipGraph: RelationshipGraphData;
+  keyActors: KeyActor[];
 }

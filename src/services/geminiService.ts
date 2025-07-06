@@ -32,17 +32,15 @@ export const generateNarrative = async (data: ReportData): Promise<string> => {
     }
 
     const prompt = `
-You are a world-class economic data analyst from the German Institute for Economic Research (DIW Berlin). Your task is to transform the key data from a report into a fluid, human-like narrative.
+You are a world-class economic data analyst from the German Institute for Economic Research (DIW Berlin).
+Based on the following data from a DIW Weekly Report on "${data.title}", write a compelling narrative summary.
 
-Based on the following data from a DIW Weekly Report on "${data.title}", write a compelling narrative summary as if you were explaining it to a colleague.
-
-Your narrative should:
-1.  **Be written in plain text only.** Do not use any markdown formatting (no headings, no bullet points, no bold text).
-2.  **Flow like a story.** Start with the core issue, weave in the key trends and data points naturally, and explain the interconnections between this report and broader economic or social topics in Germany.
-3.  **Maintain a professional yet conversational tone.** Imagine you are verbally summarizing the report's key story.
-4.  Conclude with a thought-provoking, forward-looking statement.
-
-Your output should be a single block of continuous text, with paragraphs separated by newlines.
+Your analysis should:
+1.  Start with a concise, high-level summary of the main issue.
+2.  Explain the key trends shown in the provided data and charts.
+3.  **Crucially, identify and elaborate on the interconnections.** Discuss how the findings in this report might influence or be influenced by other economic sectors or social issues in Germany. For example, how might a construction downturn affect employment? How does the gender care gap relate to women in executive roles?
+4.  Conclude with a forward-looking statement or a key takeaway.
+5.  Format your entire response in GitHub-flavored Markdown for web display. Use headings, bold text, and bullet points to structure your analysis for readability.
 
 Here is the data for your analysis:
 - **Report Title:** ${data.title}
@@ -119,43 +117,54 @@ interface ChartConfig { type: 'bar' | 'line' | 'pie'; data: ChartDataPoint[]; da
 interface GraphNode { id: string; title: string; }
 interface GraphEdge { source: string; target: string; label: string; }
 interface RelationshipGraphData { nodes: GraphNode[]; edges: GraphEdge[]; }
+interface KeyActor { name: string; description: string; icon: string; /* A full Font Awesome 6 class string, e.g., "fa-solid fa-users" or "fa-solid fa-industry" */ }
 interface StoryboardData {
+  title: string; // A compelling, overarching title for the entire storyboard analysis.
   narrative: string;
   charts: ChartConfig[];
   introspection: string;
   retrospection: string;
   relationshipGraph: RelationshipGraphData;
+  keyActors: KeyActor[];
 }
 
 ---
 **DETAILED INSTRUCTIONS**
 ---
 
-**1. For the \`narrative\` - The Singularity Thesis:**
+**1. For the \`title\`:**
+*   Create a short, punchy, and insightful title for the entire synthesized report. This should encapsulate your singularity thesis.
+
+**2. For the \`narrative\` - The Singularity Thesis:**
 *   **Identify and State the Singularity:** Begin by explicitly stating the central theme or "singularity." This is your core thesis. Frame it as a powerful, insightful statement (e.g., "Germany's current economic friction stems not from isolated issues, but from a pervasive 'crisis of structural adaptation'").
 *   **Build the Case:** Demonstrate how each individual report serves as a pillar supporting your central thesis.
 *   **Synthesize the Implications:** Explain the compounded effect. What is the larger, emergent threat or opportunity?
 *   **Conclude with a Call to Action:** End with a concise, forward-looking statement focused on addressing the root cause.
 
-**2. For the \`charts\` - Visualizing the Singularity:**
+**3. For the \`charts\` - Visualizing the Singularity:**
 *   **Create a Thesis Visualization:** Your charts (1-2) **must** visually represent the narrative singularity. **Do not simply copy or re-aggregate data from the source charts.**
 *   **Be Creative:** Invent a new, meaningful visualization. For example, a "Structural Drag Index" chart quantifying each report's contribution to the problem.
 *   If you cannot create a meaningful visualization, return an empty array \`[]\`.
 
-**3. For the \`relationshipGraph\` - Mapping the Connections:**
+**4. For the \`relationshipGraph\` - Mapping the Connections:**
 *   **Goal:** Create a node-edge graph that visually maps the most critical inter-report relationships supporting your singularity thesis. This provides a visual 'mind map' of your core argument.
 *   **Nodes:** Populate the \`nodes\` array. Each node represents one of the source reports. Use the report's \`id\` and \`title\`.
 *   **Edges:** Populate the \`edges\` array with 2-4 of the most critical connections. An edge connects two reports (source -> target). The \`label\` on the edge MUST be a concise explanation of the causal link (e.g., 'Reduced construction activity lowers tax revenue, worsening debt outlook').
 
-**4. For the \`introspection\` - The 'Why':**
+**5. For the \`introspection\` - The 'Why':**
 *   **Explain Your Reasoning:** In Markdown, reveal the logical path that led to your thesis.
 *   **Pivotal Evidence**: Pinpoint the specific data points from each report that were most influential.
 *   **Connecting the Dots**: Detail the non-obvious connections you discovered, which should align with your \`relationshipGraph\`.
 
-**5. For the \`retrospection\` - The 'What If':**
+**6. For the \`retrospection\` - The 'What If':**
 *   **Critique Your Own Analysis:** In Markdown, show intellectual humility.
 *   **Alternative Theses**: Briefly mention one plausible alternative 'singularity' you considered and why you discarded it.
 *   **Information Gaps**: If you could request one new piece of data to strengthen your analysis, what would it be?
+
+**7. For the \`keyActors\` - The Main Characters:**
+*   Identify 4-6 key actors or stakeholders central to your narrative (e.g., "German Consumers," "Policymakers," "Export-Oriented Industries," "Low-Income Households").
+*   For each actor, provide a short \`description\` of their role, challenges, or position within the story.
+*   Assign a relevant Font Awesome 6 icon class string to each actor for visual representation (e.g., "fa-solid fa-users" for consumers, "fa-solid fa-landmark" for policymakers).
 
 ---
 **SOURCE DATA**
@@ -178,7 +187,7 @@ Your entire response must be ONLY the JSON object, without any surrounding text 
 
     const parsedData = parseGeminiJsonResponse<StoryboardData>(response.text);
 
-    if (parsedData && parsedData.narrative && Array.isArray(parsedData.charts) && parsedData.introspection && parsedData.retrospection && parsedData.relationshipGraph) {
+    if (parsedData && parsedData.title && parsedData.narrative && Array.isArray(parsedData.charts) && parsedData.introspection && parsedData.retrospection && parsedData.relationshipGraph && Array.isArray(parsedData.keyActors)) {
         return parsedData;
     }
 
